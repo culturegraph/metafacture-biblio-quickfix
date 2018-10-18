@@ -1,0 +1,20 @@
+= metafacture-biblio-quickfix
+
+This library provides a Marc21Encoder that resolves the following issues:
+
+* link:https://github.com/metafacture/metafacture-core/issues/278[#278]
+* link:https://github.com/metafacture/metafacture-core/issues/283[#283]
+
+
+NOTE::
+This module is deprecated, when the fixes arrive in the master branch of metafacture.
+
+== Build
+
+image::https://jitpack.io/v/eberhardtj/metafacture-biblio-quickfix.svg[link="https://jitpack.io/#eberhardtj/metafacture-biblio-quickfix"]
+
+== Test
+
+```
+gradlew clean test
+```
