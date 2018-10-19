@@ -15,9 +15,9 @@
  */
 package org.metafacture.fix.biblio.marc21;
 
-import org.metafacture.biblio.iso2709.FieldHandler;
-import org.metafacture.biblio.iso2709.Record;
-import org.metafacture.biblio.iso2709.RecordFormat;
+import org.metafacture.fix.biblio.iso2709.FieldHandler;
+import org.metafacture.fix.biblio.iso2709.Record;
+import org.metafacture.fix.biblio.iso2709.RecordFormat;
 import org.metafacture.framework.FluxCommand;
 import org.metafacture.framework.FormatException;
 import org.metafacture.framework.MissingIdException;
