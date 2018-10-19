@@ -6,12 +6,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.metafacture.framework.StreamReceiver;
+import org.metafacture.mangling.LiteralToObject;
+import org.metafacture.metamorph.InlineMorph;
+import org.metafacture.metamorph.Metamorph;
 import org.metafacture.strings.StringConcatenator;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.inOrder;
 
 public class FixedMarc21EncoderTest {
@@ -75,6 +79,33 @@ public class FixedMarc21EncoderTest {
     @Test
     public void buildFakeRecord() {
         fakeMarc21("001");
+    }
+
+    @Test
+    public void morph() {
+        Metamorph metamorph = InlineMorph.in(this)
+                .with("<rules>")
+                .with("<entity name=\"leader\">")
+                .with("<data name=\"status\" source=\"leader.status\" />")
+                .with("<data name=\"type\" source=\"leader.type\" />")
+                .with("<data name=\"bibliographicLevel\" source=\"leader.bibliographicLevel\" />")
+                .with("<data name=\"typeOfControl\" source=\"leader.typeOfControl\" />")
+                .with("<data name=\"characterCodingScheme\" source=\"leader.characterCodingScheme\" />")
+                .with("<data name=\"encodingLevel\" source=\"leader.encodingLevel\" />")
+                .with("<data name=\"catalogingForm\" source=\"leader.catalogingForm\" />")
+                .with("<data name=\"multipartLevel\" source=\"leader.multipartLevel\" />")
+                .with("</entity>")
+                .with("<data source=\"003\"/>")
+                .with("</rules>")
+                .create();
+
+        StringConcatenator buf = new StringConcatenator();
+        Marc21Decoder decoder = new Marc21Decoder();
+
+        decoder.setReceiver(metamorph).setReceiver(new Marc21Encoder()).setReceiver(buf);
+        decoder.process(fakeMarc21("001", "003", "004"));
+
+        assertEquals(buf.getString(), fakeMarc21("003"));
     }
 
     private String fakeMarc21(String ... fields) {
