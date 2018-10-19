@@ -4,7 +4,8 @@ This library provides a Marc21Encoder that resolves the following issues:
 
 * link:https://github.com/metafacture/metafacture-core/issues/278[#278]
 * link:https://github.com/metafacture/metafacture-core/issues/283[#283]
-* Fix for the method setSystemChar that sets the offset to SYSTEM_CHARS_START
+* [.line-through]#Fix for the method setSystemChar that sets the offset to SYSTEM_CHARS_START#
+** Closed with link:https://github.com/metafacture/metafacture-core/commit/9bcc8fc1a876eb81900d8a1d9a3b831fd0c92d1b[9bcc8fc]
 
 
 NOTE::
