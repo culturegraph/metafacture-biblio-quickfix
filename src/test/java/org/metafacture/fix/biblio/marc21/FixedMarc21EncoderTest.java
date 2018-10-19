@@ -1,14 +1,17 @@
 package org.metafacture.fix.biblio.marc21;
 
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.metafacture.biblio.marc21.Marc21Decoder;
 import org.metafacture.framework.StreamReceiver;
+import org.metafacture.strings.StringConcatenator;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.inOrder;
 
 public class FixedMarc21EncoderTest {
@@ -55,5 +58,44 @@ public class FixedMarc21EncoderTest {
         ordered.verify(receiver).literal("n", "Bauer");
         ordered.verify(receiver).endEntity();
         ordered.verify(receiver).endRecord();
+    }
+
+    @Test
+    public void encodeDecode() {
+        StringConcatenator buf = new StringConcatenator();
+        Marc21Decoder decoder = new Marc21Decoder();
+        Marc21Encoder encoder = new Marc21Encoder();
+
+        decoder.setReceiver(encoder).setReceiver(buf);
+        decoder.process(fakeMarc21("001"));
+
+        assertEquals(buf.getString(), fakeMarc21("001"));
+    }
+
+    @Test
+    public void buildFakeRecord() {
+        fakeMarc21("001");
+    }
+
+    private String fakeMarc21(String ... fields) {
+        StringConcatenator buf = new StringConcatenator();
+
+        Marc21Encoder encoder = new Marc21Encoder();
+        encoder.setReceiver(buf);
+        encoder.startRecord("id");
+        encoder.startEntity("leader");
+        encoder.literal("status", "n");
+        encoder.literal("type", "o");
+        encoder.literal("bibliographicLevel", "a");
+        encoder.literal("typeOfControl", " ");
+        encoder.literal("characterCodingScheme", "a");
+        encoder.endEntity();
+
+        Arrays.stream(fields).forEach(field -> encoder.literal(field, field));
+
+        encoder.endRecord();
+        encoder.closeStream();
+
+        return buf.getString();
     }
 }
