@@ -13,10 +13,9 @@ repositories {
 
 dependencies {
     implementation 'org.metafacture:metafacture-biblio:5.0.0'
+    implementation 'org.metafacture:metamorph:5.0.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.5.5'
     testImplementation 'org.metafacture:metafacture-io:5.0.0'
     testImplementation 'org.metafacture:metafacture-strings:5.0.0'
-    implementation 'org.metafacture:metafacture-biblio:5.0.0'
-    implementation 'org.metafacture:metamorph:5.0.0'
 }
