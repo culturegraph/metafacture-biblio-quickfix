@@ -84,7 +84,42 @@ public final class MarcXmlHandler extends DefaultXmlPipe<StreamReceiver> {
 			getReceiver().endRecord();
 
 		}else if(LEADER.equals(localName)){
-			getReceiver().literal(currentTag, builder.toString());
+			String leader = builder.toString();
+
+			// Copied from Iso2709Constants due to package private
+			final int RECORD_STATUS_POS = 5;
+			final int IMPL_CODES_START = 6;
+			final int SYSTEM_CHARS_START = 17;
+
+			// Decompose leader for marc21 encoder
+			getReceiver().startEntity(LEADER);
+
+			String recordStatus = String.valueOf(leader.charAt(RECORD_STATUS_POS));
+			getReceiver().literal(Marc21EventNames.RECORD_STATUS_LITERAL, recordStatus);
+
+			String recordType = String.valueOf(leader.charAt(IMPL_CODES_START + Marc21Constants.RECORD_TYPE_INDEX));
+			getReceiver().literal(Marc21EventNames.RECORD_TYPE_LITERAL, recordType);
+
+			String bibliographicLevel = String.valueOf(leader.charAt(IMPL_CODES_START + Marc21Constants.BIBLIOGRAPHIC_LEVEL_INDEX));
+			getReceiver().literal(Marc21EventNames.BIBLIOGRAPHIC_LEVEL_LITERAL, bibliographicLevel);
+
+			String typeOfControl = String.valueOf(leader.charAt(IMPL_CODES_START + Marc21Constants.TYPE_OF_CONTROL_INDEX));
+			getReceiver().literal(Marc21EventNames.TYPE_OF_CONTROL_LITERAL, typeOfControl);
+
+			String characterCoding = String.valueOf(leader.charAt(IMPL_CODES_START + Marc21Constants.CHARACTER_CODING_INDEX));
+			getReceiver().literal(Marc21EventNames.CHARACTER_CODING_LITERAL, characterCoding);
+
+			String encodingLevel = String.valueOf(leader.charAt(SYSTEM_CHARS_START + Marc21Constants.ENCODING_LEVEL_INDEX));
+			getReceiver().literal(Marc21EventNames.ENCODING_LEVEL_LITERAL, encodingLevel);
+
+			String catalogingForm = String.valueOf(leader.charAt(SYSTEM_CHARS_START + Marc21Constants.CATALOGING_FORM_INDEX));
+			getReceiver().literal(Marc21EventNames.CATALOGING_FORM_LITERAL, catalogingForm);
+
+			String multipartLevel = String.valueOf(leader.charAt(SYSTEM_CHARS_START + Marc21Constants.MULTIPART_LEVEL_INDEX));
+			getReceiver().literal(Marc21EventNames.MULTIPART_LEVEL_LITERAL, multipartLevel);
+
+			getReceiver().endEntity();
+
 		}
 	}
 

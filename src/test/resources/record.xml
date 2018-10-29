@@ -1,0 +1,61 @@
+<marc:record xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <marc:leader>00000nam a2200000zc 4500</marc:leader>
+    <marc:controlfield tag="001">BV018229257</marc:controlfield>
+    <marc:controlfield tag="003">DE-604</marc:controlfield>
+    <marc:controlfield tag="005">20050722</marc:controlfield>
+    <marc:controlfield tag="007">t</marc:controlfield>
+    <marc:controlfield tag="008">040417s1961 |||| 00||| bel d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+        <marc:subfield code="a">(OCoLC)163791912</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+        <marc:subfield code="a">(DE-599)BVBBV018229257</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+        <marc:subfield code="a">DE-604</marc:subfield>
+        <marc:subfield code="b">ger</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+        <marc:subfield code="a">DE-12</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="084" ind1=" " ind2=" ">
+        <marc:subfield code="a">7,41</marc:subfield>
+        <marc:subfield code="2">ssgn</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="089" ind1=" " ind2=" ">
+        <marc:subfield code="e">22/ger</marc:subfield>
+        <marc:subfield code="g">478</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+        <marc:subfield code="a">Lojka, Aleh A.</marc:subfield>
+        <marc:subfield code="d">1931-2008</marc:subfield>
+        <marc:subfield code="e">Verfasser</marc:subfield>
+        <marc:subfield code="0">(DE-588)121514986</marc:subfield>
+        <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+        <marc:subfield code="a">Novaja zjamlja Jakuba Kolasa</marc:subfield>
+        <marc:subfield code="b">vytoki,velič,charastvo</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+        <marc:subfield code="a">Minsk</marc:subfield>
+        <marc:subfield code="b">
+            Vyd-va Minist.vyšėjšaj sjarėdnjaj specyjal'naj i prafesijanal'naj adukacyi BSSR
+        </marc:subfield>
+        <marc:subfield code="c">1961</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+        <marc:subfield code="a">156 S.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+        <marc:subfield code="a">
+            [A.m.russ.Tit.:](Oleg Antonovič Lojko: Novaja zemlja Jakuba Kolasa.) ["Die neue Welt" des Jakub Kolas,
+        </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+        <marc:subfield code="a">weissruthen.][Kanstancin Michajlavič Mickevič]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="940" ind1="1" ind2=" ">
+        <marc:subfield code="n">oe</marc:subfield>
+    </marc:datafield>
+</marc:record>
