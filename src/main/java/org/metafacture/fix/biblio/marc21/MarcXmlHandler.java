@@ -25,6 +25,8 @@ import org.metafacture.framework.helpers.DefaultXmlPipe;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import java.util.Optional;
+
 
 /**
  * A marc xml reader.
@@ -50,21 +52,22 @@ public final class MarcXmlHandler extends DefaultXmlPipe<StreamReceiver> {
 	@Override
 	public void startElement(final String uri, final String localName, final String qName, final Attributes attributes)
 			throws SAXException {
-			if(SUBFIELD.equals(localName)){
-				builder = new StringBuilder();
-				currentTag = attributes.getValue("code");
-			}else if(DATAFIELD.equals(localName)){
-				getReceiver().startEntity(attributes.getValue("tag") + attributes.getValue("ind1") + attributes.getValue("ind2"));
-			}else if(CONTROLFIELD.equals(localName)){
-				builder = new StringBuilder();
-				currentTag = attributes.getValue("tag");
-			}else if(RECORD.equals(localName) && NAMESPACE.equals(uri)){
-				getReceiver().startRecord("");
-				getReceiver().literal(TYPE, attributes.getValue(TYPE));
-			}else if(LEADER.equals(localName)){
-				builder = new StringBuilder();
-				currentTag = LEADER;
-			}
+		if(SUBFIELD.equals(localName)){
+			builder = new StringBuilder();
+			currentTag = attributes.getValue("code");
+		}else if(DATAFIELD.equals(localName)){
+			getReceiver().startEntity(attributes.getValue("tag") + attributes.getValue("ind1") + attributes.getValue("ind2"));
+		}else if(CONTROLFIELD.equals(localName)){
+			builder = new StringBuilder();
+			currentTag = attributes.getValue("tag");
+		}else if(RECORD.equals(localName) && NAMESPACE.equals(uri)){
+			getReceiver().startRecord("");
+			Optional<String> recordType = Optional.ofNullable(attributes.getValue(TYPE));
+			recordType.ifPresent(type -> getReceiver().literal(TYPE, type));
+		}else if(LEADER.equals(localName)){
+			builder = new StringBuilder();
+			currentTag = LEADER;
+		}
 	}
 
 	@Override
